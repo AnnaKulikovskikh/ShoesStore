@@ -1,0 +1,377 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&subset=cyrillic-ext');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed&subset=cyrillic-ext');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Header */
+
+.container {
+  width: 100%;
+  background-color: lightgray;
+  padding: 0 1rem;
+  display: inline-flex;
+}
+
+.nav {
+  display: flex;
+  width: 100%;
+  height: 3.7rem;
+  color: grey;
+  font-size: 1rem;
+}
+
+.nav > img {
+  width: 150px;
+}
+
+.navbar-nav {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  color: gray;
+  border: none;
+  background-color: transparent;
+  margin-right: 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.search-cart{
+  display: inline-flex;
+  margin-right: 2rem;
+  align-items: center;
+}
+
+/* pics  header-controls-search-form form-inline invisible search-form form-control*/
+
+.header-controls-pic {
+  height: 32px;
+  width: 32px;
+  margin: 0 10px;
+  background-image: url(./img/header-controls-sprite.png);
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.header-controls-search {
+  position: relative;
+  z-index: 1;
+  background-position: -64px 0;
+}
+
+.header-controls-cart {
+  position: relative;
+  background-position: 0 0;
+}
+
+.header-controls-cart-full {
+  position: absolute;
+  right: -10px;
+  top: -5px;
+  display: block;
+  height: 21px;
+  width: 21px;
+  font-size: 11px;
+  line-height: 21px;
+  text-align: center;
+  color: #FFFFFF;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #ff65a5 1.11%, #ff8076 100%);
+  box-shadow: 0px 2px 8px rgba(255, 101, 165, 0.6), inset 0px 1px 1px #ff8076;
+}
+
+.header-controls-search-form {
+  position: absolute;
+  left: 62%;
+  top: 0.5rem;
+  display: block;
+  width: 10rem;
+  height: 2.5rem;
+  padding: 0 20px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 10px #D4E4E6;
+  border-radius: 50px;
+  text-align: right;
+  font-size: 1.2rem;
+}
+
+.header-controls-search-form .form-control {
+  width: 100%;
+  height: 90%;
+  color: #333333;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* Banner */
+.banner {
+  position: relative;
+  margin-top: -0.3rem;
+}
+
+.img-fluid {
+  width: 100%;
+}
+
+.banner-header {
+  position: absolute;
+  z-index: 5;
+  right: 0;
+  top: 35%;
+  height: 25%;
+  width: 40%;
+  font-weight: bold;
+  font-size: 5vw;
+  line-height: 98px;
+  text-align: center;
+  color: #FFFFFF;
+  background: linear-gradient(270deg, rgba(161, 179, 191, 0.8) 72.59%, rgba(161, 179, 191, 0) 98.05%);
+}
+
+/* Main */
+
+/* .top-sales {
+  min-height: 300px;
+  padding-left: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 0;
+  font-size: 1rem;
+  text-align: center; 
+  } 
+*/
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main > h2 {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.card {
+  width: 28%;
+  margin: 2% 2%;
+  border: 1px solid lightgray;
+  border-radius: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card > img {
+  width: 100%;
+}
+
+.item-description * {
+  margin: 1.5rem;
+}
+
+.btn-link {
+  background-color: transparent;
+  color: grey;
+  border: 1px solid lightgray;
+  border-radius: 0.2rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-top: 0;
+  margin-left: 0;
+  cursor: pointer;
+}
+.text-center {
+  text-align: center;
+}
+.main > button {
+  margin-bottom: 2rem;
+}
+.categories {
+  list-style-type: none;
+  display: flex;
+  color: gray;
+}
+.categories * {
+  margin-right: 1.5rem;
+  cursor: pointer;
+}
+
+/* GoodsDetail*/
+.shoe-card {
+  width: 100%;
+  padding: 3rem;
+  margin: 0;
+}
+.shoe-content {
+  display: flex;
+  justify-content: space-between;
+}
+.shoe-content > img {
+  width: 48%;
+}
+.shoe-text {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.shoe-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: left;
+}
+.shoe-info * {
+  border: 1px solid grey;
+}
+.shoe-size {
+  list-style-type: none;
+}
+.quantity {
+  display: flex;
+}
+.shoe-text > button {
+  background-color: #ff65a5;
+  color: white;
+}
+
+
+/* Footer */
+
+.footer {
+  display: grid;
+  grid-template-columns: 20% 40% 25%;
+  grid-gap: 5%;
+  padding-bottom: 2rem;
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.text-right {
+  align-items: flex-end;
+}
+
+.footer-section > h5 {
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+
+.flex-column {
+  padding-left: 5%;
+  height: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav-item {
+  list-style-type: none;
+}
+
+.footer-pay {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.footer-pay-systems {
+  width: 50px;
+  height: 28px;
+  border: 2px solid #FFFFFF;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  background-repeat: no-repeat;
+  background-image: url(./img/footer-sprite.png);
+}
+
+.footer-pay-systems:not(:first-child) {
+  margin-left: 5px;
+}
+.footer-pay-systems-paypal {
+  background-position: -2px -6px;
+}
+.footer-pay-systems-master-card {
+  background-position: -54px -8px;
+}
+.footer-pay-systems-visa {
+  background-position: -104px -8px;
+}
+.footer-pay-systems-yandex {
+  background-position: -154px -8px;
+}
+.footer-pay-systems-webmoney {
+  background-position: -2px -46px;
+}
+.footer-pay-systems-qiwi {
+  background-position: -52px -46px;
+}
+
+.footer-social-links {
+  margin-top: 10px;
+}
+.footer-social-link {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  margin: 0 5px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-image: url(./img/footer-sprite.png);
+}
+.footer-social-link-twitter {
+  background-position: -107px -42px;
+}
+.footer-social-link-vk {
+  background-position: -157px -42px;
+}
+.footer-social-link:hover {
+  cursor: pointer;
+}
+
+.footer-copyright {
+  font-size: 0.8em;
+}
+
+/* Actions */
+.active {
+  color: black;
+}
+
+.invisible {
+  display: none;
+}
+
+
+/* Bootstrap */
+/* .nav-link.active {
+  color: #ff0000;
+}
+
+h2, .h2 {
+  margin-bottom: 1.5em;
+  margin-top: 2em;
+}
+
+.btn-outline-primary {
+  color: #727e86;
+  border-color: #727e86;
+}
+
+.btn-outline-primary:hover {
+  background-color: #727e86;
+  border-color: #727e86;
+} */
