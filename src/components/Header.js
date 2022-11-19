@@ -25,10 +25,12 @@ export default function Header(){
           <input className="form-control" placeholder="Поиск" />
         </form>
         <div data-id="search-expander" className="header-controls-pic header-controls-search"></div>
-        <div className="header-controls-pic header-controls-cart">
-          <div className="header-controls-cart-full">1</div>
-          <div className="header-controls-cart-menu"></div>
-        </div>
+        <Link to="/cart">
+          <div className="header-controls-pic header-controls-cart">
+            <div className="header-controls-cart-full">1</div>
+            <div className="header-controls-cart-menu"></div>
+          </div>
+        </Link>
       </div>
     </header>
   )

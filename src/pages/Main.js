@@ -63,6 +63,7 @@ export default function Main() {
     }, [])
 
     function onSelectSort(sort) {
+        setView(true)
         setSelected(sort)
         if (sort === -1) {
             setDisplayShoes(catalog)
@@ -74,10 +75,16 @@ export default function Main() {
     // Дозагрузка
     const [view, setView] = useState(true)
     const [loadItem, setLoadItem] = useState(6)
-    
+    // http://localhost:7070/api/items?categoryId=X&offset=6
+    // http://localhost:7070/api/items?categoryId=12&offset=6  
+    //`${url}items?categoryId=${selected}&offset=${loadItem}`
+    //if selected === -1  `${url}items?offset=${loadItem}`
+
     function loadMore(){
         setLoadItem(prev => prev + 6)
-        fetch(`${url}items?offset=${loadItem}`)
+        let isUrl=`${url}items?offset=${loadItem}`
+        //if (selected !== -1) isUrl = `${url}items?categoryId=${selected}&offset=${loadItem}`
+        fetch(isUrl)
             .then(res => res.json())
             .then(data => {
                 setCatalog(prev => prev.concat(data))
@@ -88,7 +95,7 @@ export default function Main() {
                     setDisplayShoes(prev => prev.concat(data.filter(item => item.category === selected)))
                 }
                 
-                if (data.length % 6 !== 0) setView(false) 
+                if (data.length === 0 || data.length % 6 !== 0) setView(false) 
         })
     }
 
@@ -101,7 +108,7 @@ export default function Main() {
             <h2>Каталог</h2>
             {isLoadCategories ? <SortMenu categories={categories} selected={selected} onSelectSort={onSelectSort} /> : 'loading'}
             {isLoad ? <ShoesList shoes={displayShoes}/> : 'loading'}
-            {view && <button onClick={loadMore} >Загрузить еще</button>}
+            {view && <button onClick={loadMore} className="btn-link">Загрузить еще</button>}
         </div>
     )
 }

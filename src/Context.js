@@ -1,13 +1,13 @@
-// import React, {useState} from "react"
-// const Context = React.createContext
+import React, {useState} from "react"
+const Context = React.createContext()
 
-// function ContextProvider(props) {
-//     const [activeMenu, setActiveMenu] = useState()
-//     return (
-//         <ContextProvider value={{activeMenu}}>
-//             {props.children}
-//         </ContextProvider>
-//     )
-// }
+function ContextProvider(props) {
+    const [activeMenu, setActiveMenu] = useState()
+    return (
+        <Context.Provider value={{activeMenu}}>
+            {props.children}
+        </Context.Provider>
+    )
+}
 
-// export {ContextProvider, Context}
+export {ContextProvider, Context}

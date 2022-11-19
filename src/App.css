@@ -175,11 +175,9 @@ body {
 .card > img {
   width: 100%;
 }
-
 .item-description * {
   margin: 1.5rem;
 }
-
 .btn-link {
   background-color: transparent;
   color: grey;
@@ -210,12 +208,16 @@ body {
 /* GoodsDetail*/
 .shoe-card {
   width: 100%;
-  padding: 3rem;
-  margin: 0;
+  padding: 0;
+  margin-bottom: 3rem;
+}
+.shoe-card > h2 {
+  font-size: 3rem;
 }
 .shoe-content {
   display: flex;
   justify-content: space-between;
+  margin: 0 2rem;
 }
 .shoe-content > img {
   width: 48%;
@@ -224,32 +226,130 @@ body {
   width: 48%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 .shoe-info {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat (7, 1fr);
   text-align: left;
 }
 .shoe-info * {
   border: 1px solid grey;
+  height: 1.2rem;
+  padding: 1rem;
 }
-.shoe-size {
+.shoe-sizes {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  grid-gap: 1.2rem;
+  margin-top: 1rem;
+  align-self: center;
+}
+.shoe-sizes > div {
+  line-height: 1.5rem;
+}
+.shoe-sizes-list {
   list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+.shoe-sizes-list * {
+  margin-right: 1rem;
+  padding: 0.3rem 0.8rem;
+  margin-bottom: 0.5rem;
+  border-radius: 1rem;
+  cursor: pointer;
 }
 .quantity {
   display: flex;
+  margin: 1rem auto;
+  align-items: center;
+}
+.counter {
+  display: flex;
+  margin-left: 1rem;
+  border: 1px solid grey;
+  border-radius: 0.3rem;
+}
+.counter * {
+  padding: 0.2rem 0.7rem;
+}
+.plus {
+  background-color: grey;
+  border: 1px solid grey;
+  color: white;
+  cursor: pointer;
 }
 .shoe-text > button {
   background-color: #ff65a5;
   color: white;
+  border: none;
+  border-radius: 0.4rem;
+  padding: 1rem 0;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
+/* Cart */
+.cart {
+  width: 94%;
+  margin: 0;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.goods-list {
+  display: grid;
+  width: 100%;
+  /* grid-template-columns: repeat(7, 1fr); */
+  grid-template-columns: 7% 23% 15% 13% 14% 14% 14%;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+.goods-list * {
+  border: 1px solid grey;
+  text-align: left;
+  padding: 0.3rem 1rem;
+}
+.head {
+  font-weight: 700;
+}
+.total {
+  grid-column-end: span 5;
+  text-align: right;
+}
+.table > .btn-link {
+  border: 1px solid red;
+  color: red;
+}
+
+.order-form {
+  width: 50%;
+  height: 15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid grey;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+#tel, #adress {
+  border-radius: 0.2rem;
+  border: 1px solid grey;
+  height: 2rem;
+}
+.order-form > button {
+  width: 30%;
+}
 
 /* Footer */
 
 .footer {
   display: grid;
+  width: 97%;
   grid-template-columns: 20% 40% 25%;
   grid-gap: 5%;
   padding-bottom: 2rem;
@@ -353,6 +453,11 @@ body {
 
 .invisible {
   display: none;
+}
+
+.chosen-size {
+  background-color: grey;
+  color: white;
 }
 
 
