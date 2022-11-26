@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+﻿import React, { useState, useEffect } from "react"
 import { stringify } from "uuid"
 const Context = React.createContext()
 
@@ -91,24 +91,37 @@ function ContextProvider(props) {
         localStorage.setItem("cart", JSON.stringify(cart))
     }, [cart])
 
+    console.log(cart)
+
     function toCart(detail) {
-        setCart(prev => [...prev, detail])
-        //window.location.href = "/cart"
+        //setCart(prev => [...prev, detail])
+        setCart(prev => {
+            if (prev.find(item => item.title === detail.title && item.size === detail.size)) {
+                const i = prev.findIndex(item => item.title === detail.title)
+		const newArr = prev
+		newArr[i] = {...prev[i], count: prev[i].count + detail.count}
+                //prev[i] = {...prev[i], count: prev[i].count + detail.count}
+                return newArr
+            } else {
+                return [...prev, detail]
+            }
+        })
+        window.location.href = "/cart"
     }
 
-    function outCart(id) {
-        setCart(prev => prev.filter(item => item.id !== id))
+    function outCart(key) {
+        setCart(prev => prev.filter(item => item.key !== key))
 
     }
 
     function emptyCart() {
-        console.log('clear')
         localStorage.clear()
         setCart([])
     }
 
     return (
-        <Context.Provider value={{ isLoadCategories, categories, selected, onSelectSort, isLoad, displayShoes, view, loadMore, seeker, text, toCart, outCart, cart }}>
+        <Context.Provider 
+            value={{ isLoadCategories, categories, selected, onSelectSort, isLoad, displayShoes, view, loadMore, seeker, text, toCart, outCart, cart, emptyCart }}>
             {props.children}
         </Context.Provider>
     )

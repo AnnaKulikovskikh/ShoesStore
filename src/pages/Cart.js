@@ -8,14 +8,14 @@ export default function Cart() {
     if (cart.length > 0) total = cart.reduce((sum, shoe) => sum + shoe.price * shoe.count, 0)
     const cartGoods = cart.map((item, index) => {
         return (
-            <tr key={item.id}> 
+            <tr key={item.key}> 
                 <td className="table">{index + 1}</td>
                 <td className="table">{item.title}</td>
                 <td className="table">{item.size}</td>
                 <td className="table">{item.count}</td>
                 <td className="table">{item.price}</td>
                 <td className="table">{item.count*item.price}</td>
-                <td className="table"><button className="btn-link" onClick={() => outCart(item.id)}>Удалить</button></td>
+                <td className="table"><button className="btn-link" onClick={() => outCart(item.key)}>Удалить</button></td>
             </tr>
         )
     })
@@ -23,15 +23,27 @@ export default function Cart() {
     //оформление заказа
     const tel = useRef(null)
     const address = useRef(null)
+    const agree = useRef(null)
 
-    function order() {
-        if (!tel.current.value || !address.current.value) return null
+    function order(e) {
+        e.preventDefault()
+        if (!tel.current.value || !address.current.value) {
+            alert('Введите телефон и адрес!')
+            return null
+        }
+        if (!agree.current.checked) {
+            alert('Необходимо согласие с правилами доставки!')
+            return null
+        }
+        const purchase = cart.map(item => {
+            return {"id": item.id, "price": item.price, "count": item.count}
+        })
         const orderInfo = {
             "owner": {
                 "phone": tel.current.value,
                 "address": address.current.value
             },
-            "items": cart
+            "items": purchase
         }
 
         const options = {
@@ -39,11 +51,20 @@ export default function Cart() {
             body: JSON.stringify(orderInfo),
             headers: {"Content-Type": "application/json"}
         }
-        emptyCart()
 
          fetch('http://localhost:7070/api/order', options)
-         tel.current.value = ""
-         address.current.value = ""
+            .then(res => {
+                res.json()
+                if (res.ok) {
+                    tel.current.value = ""
+                    address.current.value = ""
+                    agree.current.checked = false
+                    emptyCart()
+                } else {
+                    throw new Error(res.status)
+                }
+                
+            })
     }
 
     return (
@@ -76,7 +97,7 @@ export default function Cart() {
                 <input placeholder="Ваш телефон" id="tel" type="tel" ref={tel} />
                 <label htmlFor="adress">Адерс доставки</label>
                 <input placeholder="Адрес доставки" id="adress" type="text" ref={address} />
-                <label><input type="checkbox" />Согласен с правилами доставки</label>
+                <label><input type="checkbox" ref={agree} />Согласен с правилами доставки</label>
                 <button type="submit" className="btn-link">Оформить</button>
             </form>
         </div>

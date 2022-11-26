@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useContext } from "react"
 import { useParams } from "react-router"
 import { Context } from '../Context'
+import { nanoid } from 'nanoid'
 
 export default function ShoeDetail() {
     const {toCart} = useContext(Context)
@@ -71,7 +72,7 @@ export default function ShoeDetail() {
                         </div>
                         {chosenSize && <button 
                             onClick={() => toCart({
-                                id: itemId, title: shoe.title, size: chosenSize , count: count, price: shoe.price
+                                key: nanoid(), id: itemId, title: shoe.title, size: chosenSize , count: count, price: shoe.price
                                 })}>В корзину</button>}
                     </div>
                 </div>
