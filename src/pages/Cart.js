@@ -103,27 +103,3 @@ export default function Cart() {
         </div>
     )
 }
-
-
-
-
-
-{/* <h2>Корзина</h2>
-<div className="goods-list">
-    <div className="table head">#</div>
-    <div className="table head">Название</div>
-    <div className="table head">Размер</div>
-    <div className="table head">Количество</div>
-    <div className="table head">Стоимость</div>
-    <div className="table head">Итого</div>
-    <div className="table head">Действие</div>
-    <div className="table">1</div>
-    <div className="table"></div>
-    <div className="table"></div>
-    <div className="table"></div>
-    <div className="table"></div>
-    <div className="table"></div>
-    <div className="table"><button className="btn-link">Удалить</button></div>
-    <div className="total">Общая стоимость</div>
-    <div className="total-price"></div>
-</div> */}

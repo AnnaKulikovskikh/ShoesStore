@@ -14,9 +14,15 @@ export default function ShoeDetail() {
     const [chosenSize, setChosenSize] = useState(null)
     const url = `http://localhost:7070/api/`
 
-    useEffect(() => {
+    useEffect((url, itemId, sizes) => {
         fetch(`${url}items/${itemId}`)
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) {
+                    window.location.href = "/nopage"
+                    return null
+                }
+                return res.json()
+            })
             .then(data => {
                 setShoe(data)
                 setLoad(true)
