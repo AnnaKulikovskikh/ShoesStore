@@ -1,18 +1,20 @@
 ﻿import React, { useState, useEffect } from "react"
-import { stringify } from "uuid"
 const Context = React.createContext()
 
 function ContextProvider(props) {
     const url = 'http://localhost:7070/api/'
-
-     //Каталог
+    
+    //Каталог
      const [catalog, setCatalog] = useState([])
      const [isLoad, setLoad] = useState(false)
      const [displayShoes, setDisplayShoes] = useState([])
  
      useEffect(() => {
          fetch(`${url}items`)
-             .then(res => res.json())
+             .then(res => {
+                if (!res.ok) throw new Error (res.status)
+                return res.json()
+             })
              .then(data => {
                  setCatalog(data)
                  setDisplayShoes(data)
@@ -27,7 +29,10 @@ function ContextProvider(props) {
      
      useEffect(() => {
          fetch(`${url}categories`)
-             .then(res => res.json())
+             .then(res => {
+                if (!res.ok) throw new Error (res.status)
+                return res.json()
+             })
              .then(data => {
                  setCategories([{"id": -1, "title": "Все"} ,...data])
                  setLoadCategories(true)
@@ -57,7 +62,10 @@ function ContextProvider(props) {
          let isUrl=`${url}items?offset=${loadItem}`
          //if (selected !== -1) isUrl = `${url}items?categoryId=${selected}&offset=${loadItem}`
          fetch(isUrl)
-             .then(res => res.json())
+             .then(res => {
+                if (!res.ok) throw new Error (res.status)
+                return res.json()
+             })
              .then(data => {
                  setCatalog(prev => prev.concat(data))
                  //onSelectSort(selected)
@@ -91,16 +99,17 @@ function ContextProvider(props) {
         localStorage.setItem("cart", JSON.stringify(cart))
     }, [cart])
 
-    console.log(cart)
-
     function toCart(detail) {
-        //setCart(prev => [...prev, detail])
         setCart(prev => {
             if (prev.find(item => item.title === detail.title && item.size === detail.size)) {
-                const i = prev.findIndex(item => item.title === detail.title)
-		const newArr = prev
-		newArr[i] = {...prev[i], count: prev[i].count + detail.count}
-                //prev[i] = {...prev[i], count: prev[i].count + detail.count}
+                const newArr =[]
+                for (let i = 0; i < prev.length; i++) {
+                    if (prev[i].title === detail.title) {
+                        newArr.push({...prev[i], count: prev[i].count + detail.count})
+                    } else {
+                        newArr.push(prev[i])
+                    }
+                }
                 return newArr
             } else {
                 return [...prev, detail]
@@ -121,7 +130,8 @@ function ContextProvider(props) {
 
     return (
         <Context.Provider 
-            value={{ isLoadCategories, categories, selected, onSelectSort, isLoad, displayShoes, view, loadMore, seeker, text, toCart, outCart, cart, emptyCart }}>
+            value={{ isLoadCategories, categories, selected, onSelectSort, isLoad, displayShoes, view, loadMore, seeker, text, 
+                    toCart, outCart, cart, emptyCart }}>
             {props.children}
         </Context.Provider>
     )

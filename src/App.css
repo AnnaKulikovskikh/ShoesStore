@@ -158,8 +158,9 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
-.card > img {
+.item-image {
   width: 100%;
+  object-fit: contain;
 }
 .item-description * {
   margin: 1.5rem;
@@ -213,6 +214,7 @@ body {
 }
 .shoe-content > img {
   width: 48%;
+  object-fit: contain;
 }
 .shoe-text {
   width: 48%;
